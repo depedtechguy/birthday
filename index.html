@@ -12,13 +12,14 @@ html {
 
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: black;
   color: #d4af37;
   text-align: center;
+  line-height: 1.6;
 }
 
-/* Sections */
+/* Scroll animation */
 section {
   padding: 80px 20px;
   opacity: 0;
@@ -46,6 +47,10 @@ img {
   border: 2px solid #d4af37;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 /* Buttons */
 button {
   background: linear-gradient(45deg, #d4af37, #f1d77a);
@@ -54,6 +59,7 @@ button {
   width: 100%;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /* Countdown */
@@ -65,6 +71,17 @@ button {
 /* QR */
 #qrcode {
   margin-top: 20px;
+}
+
+/* Inputs */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #d4af37;
+  background: rgba(255,255,255,0.05);
+  color: white;
 }
 </style>
 </head>
@@ -83,7 +100,9 @@ button {
   <div class="card">
     <h2>Event Details</h2>
     <img src="https://via.placeholder.com/500x300">
-    <p>June 15, 2026 | 5:00 PM</p>
+    <p><strong>Date:</strong> June 15, 2026</p>
+    <p><strong>Time:</strong> 5:00 PM</p>
+    <p><strong>Venue:</strong> Your Place</p>
   </div>
 </section>
 
@@ -91,22 +110,38 @@ button {
 <section class="reveal">
   <div class="card">
     <h2>Dress Code</h2>
-    <p>Black & Gold Elegant Attire</p>
+    <img src="https://via.placeholder.com/500x300">
+    <p>Elegant Black & Gold Attire</p>
+    <p>(Black, Gold, Champagne tones)</p>
   </div>
 </section>
 
-<!-- 📊 RSVP -->
+<!-- 📊 RSVP (REAL EMAIL SENDING) -->
 <section class="reveal">
   <div class="card">
     <h2>RSVP</h2>
 
-    <form onsubmit="return submitRSVP(event)">
-      <input type="text" id="name" placeholder="Your Name" required style="width:100%;padding:10px;">
-      <br><br>
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <!-- YOUR ACCESS KEY -->
+      <input type="hidden" name="access_key" value="ae128842-27c4-4b78-9123-a4464b0f225e">
+
+      <!-- EMAIL SUBJECT -->
+      <input type="hidden" name="subject" value="New RSVP - Louie & Febian @ 50">
+
+      <!-- DISABLE CAPTCHA -->
+      <input type="hidden" name="captcha" value="false">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <input type="email" name="email" placeholder="Your Email" required>
+
+      <textarea name="message" placeholder="Message / Number of Guests" required></textarea>
+
       <button type="submit">Confirm Attendance</button>
+
     </form>
 
-    <p id="success"></p>
   </div>
 </section>
 
@@ -125,7 +160,7 @@ button {
 
 <!-- JS -->
 <script>
-// FADE IN SCROLL
+// FADE-IN ON SCROLL
 const sections = document.querySelectorAll('.reveal');
 
 window.addEventListener('scroll', () => {
@@ -145,23 +180,17 @@ setInterval(() => {
   const diff = eventDate - now;
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
   document.getElementById("countdown").innerHTML =
     "⏳ " + days + " days left";
 }, 1000);
 
-// RSVP SUCCESS PAGE (simple)
-function submitRSVP(e) {
-  e.preventDefault();
-  document.getElementById("success").innerText =
-    "🎉 Thank you for confirming!";
-  return false;
-}
-
-// QR CODE
+// QR CODE GENERATOR
 const qr = document.createElement("img");
 qr.src =
   "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
   window.location.href;
+
 document.getElementById("qrcode").appendChild(qr);
 </script>
 
