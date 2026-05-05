@@ -1,175 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Louie & Febian @ 50</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Louie & Febian @ 50</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+html {
+  scroll-behavior: smooth;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #d4af37;
-      text-align: center;
-      line-height: 1.6;
-    }
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+  color: #d4af37;
+  text-align: center;
+}
 
-    section {
-      padding: 40px 15px;
-    }
+/* Sections */
+section {
+  padding: 80px 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
+.card {
+  max-width: 500px;
+  margin: auto;
+  border: 1px solid #d4af37;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+}
 
-    p {
-      color: #f5f5f5;
-      font-size: 1rem;
-    }
+img {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #d4af37;
+}
 
-    .hero {
-      background: radial-gradient(circle, #111, #000);
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
+/* Buttons */
+button {
+  background: linear-gradient(45deg, #d4af37, #f1d77a);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+}
 
-    .gold-line {
-      width: 60px;
-      height: 3px;
-      background: #d4af37;
-      margin: 10px auto;
-    }
+/* Countdown */
+#countdown {
+  font-size: 24px;
+  margin-top: 10px;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #d4af37;
-      border-radius: 15px;
-      padding: 20px;
-      margin: 15px auto;
-      max-width: 500px;
-      box-shadow: 0 0 15px rgba(212,175,55,0.15);
-    }
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-top: 15px;
-      border: 2px solid #d4af37;
-    }
-
-    button {
-      width: 100%;
-      max-width: 300px;
-      padding: 12px;
-      margin-top: 15px;
-      background: linear-gradient(45deg, #d4af37, #f1d77a);
-      color: #000;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    /* 📱 RESPONSIVE DESIGN */
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 3rem;
-      }
-
-      h2 {
-        font-size: 2rem;
-      }
-
-      p {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 60px 20px;
-      }
-
-      .card {
-        padding: 30px;
-      }
-    }
-  </style>
+/* QR */
+#qrcode {
+  margin-top: 20px;
+}
+</style>
 </head>
 
 <body>
 
 <!-- 🎉 HERO -->
-<section class="hero">
+<section class="reveal">
   <h1>Louie & Febian @ 50</h1>
-  <div class="gold-line"></div>
   <p>A Milestone Celebration</p>
-
-  <img src="louie.jpg" alt="Celebrants">
+  <div id="countdown"></div>
 </section>
 
-<!-- 📍 EVENT DETAILS -->
-<section>
+<!-- 📍 DETAILS -->
+<section class="reveal">
   <div class="card">
     <h2>Event Details</h2>
-
-    <img src="https://via.placeholder.com/600x400" alt="Venue">
-
-    <p><strong>Date:</strong> June 15, 2026</p>
-    <p><strong>Time:</strong> 5:00 PM</p>
-    <p><strong>Venue:</strong> Your Place</p>
+    <img src="https://via.placeholder.com/500x300">
+    <p>June 15, 2026 | 5:00 PM</p>
   </div>
 </section>
 
 <!-- 👗 DRESS CODE -->
-<section>
+<section class="reveal">
   <div class="card">
     <h2>Dress Code</h2>
-
-    <img src="https://via.placeholder.com/600x400" alt="Dress Code">
-
-    <p>Elegant Black & Gold Attire</p>
-    <p>(Black, Gold, Champagne tones)</p>
+    <p>Black & Gold Elegant Attire</p>
   </div>
 </section>
 
-<!-- 🕒 PROGRAM -->
-<section>
-  <div class="card">
-    <h2>Program Flow</h2>
-
-    <p>5:00 PM – Guest Arrival</p>
-    <p>6:00 PM – Dinner</p>
-    <p>7:00 PM – Program Proper</p>
-    <p>8:30 PM – Celebration & Dance</p>
-  </div>
-</section>
-
-<!-- ✅ RSVP -->
-<section>
+<!-- 📊 RSVP -->
+<section class="reveal">
   <div class="card">
     <h2>RSVP</h2>
 
-    <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank">
-      <button>Confirm Attendance</button>
-    </a>
+    <form onsubmit="return submitRSVP(event)">
+      <input type="text" id="name" placeholder="Your Name" required style="width:100%;padding:10px;">
+      <br><br>
+      <button type="submit">Confirm Attendance</button>
+    </form>
+
+    <p id="success"></p>
   </div>
 </section>
+
+<!-- 🎯 QR CODE -->
+<section class="reveal">
+  <div class="card">
+    <h2>Share Invite</h2>
+    <div id="qrcode"></div>
+  </div>
+</section>
+
+<!-- 🎵 MUSIC (optional) -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- JS -->
+<script>
+// FADE IN SCROLL
+const sections = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      sec.classList.add('show');
+    }
+  });
+});
+
+// COUNTDOWN
+const eventDate = new Date("June 15, 2026 17:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("countdown").innerHTML =
+    "⏳ " + days + " days left";
+}, 1000);
+
+// RSVP SUCCESS PAGE (simple)
+function submitRSVP(e) {
+  e.preventDefault();
+  document.getElementById("success").innerText =
+    "🎉 Thank you for confirming!";
+  return false;
+}
+
+// QR CODE
+const qr = document.createElement("img");
+qr.src =
+  "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+  window.location.href;
+document.getElementById("qrcode").appendChild(qr);
+</script>
 
 </body>
 </html>
