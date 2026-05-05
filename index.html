@@ -13,8 +13,8 @@ html {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: black;
-  color: #d4af37;
+  background: radial-gradient(circle, #111 0%, #000 70%, #0a0a0a 100%);
+  color: #f7e7ce; /* champagne */
   text-align: center;
   line-height: 1.6;
 }
@@ -38,7 +38,8 @@ section.show {
   border: 1px solid #d4af37;
   padding: 20px;
   border-radius: 15px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(247, 231, 206, 0.05); /* champagne glow */
+  box-shadow: 0 0 15px rgba(212,175,55,0.15);
 }
 
 img {
@@ -49,6 +50,11 @@ img {
 
 h1 {
   font-size: 2rem;
+  color: #d4af37;
+}
+
+h2 {
+  color: #d4af37;
 }
 
 /* Buttons */
@@ -62,17 +68,6 @@ button {
   cursor: pointer;
 }
 
-/* Countdown */
-#countdown {
-  font-size: 24px;
-  margin-top: 10px;
-}
-
-/* QR */
-#qrcode {
-  margin-top: 20px;
-}
-
 /* Inputs */
 input, textarea {
   width: 100%;
@@ -80,8 +75,20 @@ input, textarea {
   margin-bottom: 10px;
   border-radius: 8px;
   border: 1px solid #d4af37;
-  background: rgba(255,255,255,0.05);
-  color: white;
+  background: rgba(0,0,0,0.4);
+  color: #f7e7ce;
+}
+
+/* Countdown */
+#countdown {
+  font-size: 22px;
+  margin-top: 10px;
+  color: #f7e7ce;
+}
+
+/* QR */
+#qrcode {
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -92,17 +99,15 @@ input, textarea {
 <section class="reveal">
   <h1>Louie & Febian @ 50</h1>
   <p>A Milestone Celebration</p>
-    <img src="louie.jpg">
-
+  <img src="louie.jpg">
 </section>
 
 <!-- 📍 DETAILS -->
 <section class="reveal">
   <div class="card">
-          <h2>Event Details</h2>
-   <p>Date: May 31, 2026 | Sunday | 2:00 PM  </p> 
-    <p>Venue: Camaligan NHS Covered Court | Camaligan, Batan, Aklan</p>
-  
+    <h2>Event Details</h2>
+    <p><strong>Date:</strong> May 31, 2026 | Sunday | 2:00 PM</p>
+    <p><strong>Venue:</strong> Camaligan NHS Covered Court | Camaligan, Batan, Aklan</p>
   </div>
 </section>
 
@@ -111,12 +116,11 @@ input, textarea {
   <div class="card">
     <h2>Dress Code</h2>
     <img src="https://via.placeholder.com/500x300">
-    <p>Elegant Black & Gold Attire</p>
-    <p>(Black, Gold, Champagne tones)</p>
+    <p>Elegant Black, Gold & Champagne Attire</p>
   </div>
 </section>
 
-<!-- 📊 RSVP (REAL EMAIL SENDING) -->
+<!-- 📊 RSVP -->
 <section class="reveal">
   <div class="card">
     <h2>RSVP</h2>
@@ -126,40 +130,36 @@ input, textarea {
       <!-- YOUR ACCESS KEY -->
       <input type="hidden" name="access_key" value="ae128842-27c4-4b78-9123-a4464b0f225e">
 
-      <!-- EMAIL SUBJECT -->
       <input type="hidden" name="subject" value="New RSVP - Louie & Febian @ 50">
-
-      <!-- DISABLE CAPTCHA -->
       <input type="hidden" name="captcha" value="false">
 
       <input type="text" name="name" placeholder="Your Name" required>
-
       <input type="email" name="email" placeholder="Your Email" required>
-
       <textarea name="message" placeholder="Message / Number of Guests" required></textarea>
 
       <button type="submit">Confirm Attendance</button>
 
     </form>
-
   </div>
 </section>
 
-<!-- 🎯 QR CODE -->
+<!-- 🎯 COUNTDOWN + QR -->
 <section class="reveal">
   <div class="card">
-     <div id="countdown"></div>
+    <div id="countdown"></div>
+    <div id="qrcode"></div>
   </div>
 </section>
 
-<!-- 🎵 MUSIC (optional) -->
+<!-- 🎵 MUSIC -->
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- JS -->
 <script>
-// FADE-IN ON SCROLL
+
+// FADE IN
 const sections = document.querySelectorAll('.reveal');
 
 window.addEventListener('scroll', () => {
@@ -172,7 +172,7 @@ window.addEventListener('scroll', () => {
 });
 
 // COUNTDOWN
-const eventDate = new Date("June 15, 2026 17:00:00").getTime();
+const eventDate = new Date("May 31, 2026 14:00:00").getTime();
 
 setInterval(() => {
   const now = new Date().getTime();
@@ -181,16 +181,17 @@ setInterval(() => {
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   document.getElementById("countdown").innerHTML =
-    "⏳ " + days + " days left before the big day!";
+    "⏳ " + days + " days left before the celebration!";
 }, 1000);
 
-// QR CODE GENERATOR
+// QR CODE
 const qr = document.createElement("img");
 qr.src =
   "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
   window.location.href;
 
 document.getElementById("qrcode").appendChild(qr);
+
 </script>
 
 </body>
