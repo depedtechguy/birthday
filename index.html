@@ -14,7 +14,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: radial-gradient(circle, #111 0%, #000 70%, #0a0a0a 100%);
-  color: #f7e7ce; /* champagne */
+  color: #f7e7ce;
   text-align: center;
   line-height: 1.6;
 }
@@ -38,7 +38,7 @@ section.show {
   border: 1px solid #d4af37;
   padding: 20px;
   border-radius: 15px;
-  background: rgba(247, 231, 206, 0.05); /* champagne glow */
+  background: rgba(247, 231, 206, 0.05);
   box-shadow: 0 0 15px rgba(212,175,55,0.15);
 }
 
@@ -48,16 +48,11 @@ img {
   border: 2px solid #d4af37;
 }
 
-h1 {
-  font-size: 2rem;
+h1, h2 {
   color: #d4af37;
 }
 
-h2 {
-  color: #d4af37;
-}
-
-/* Buttons */
+/* Button */
 button {
   background: linear-gradient(45deg, #d4af37, #f1d77a);
   border: none;
@@ -69,7 +64,7 @@ button {
 }
 
 /* Inputs */
-input, textarea {
+input, textarea, select {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -83,26 +78,52 @@ input, textarea {
 #countdown {
   font-size: 22px;
   margin-top: 10px;
-  color: #f7e7ce;
 }
 
 /* QR */
 #qrcode {
   margin-top: 20px;
 }
+
+/* FOOTER MARQUEE */
+.footer-marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 15px 0;
+  background: rgba(212,175,55,0.08);
+  border-top: 1px solid #d4af37;
+  margin-top: 40px;
+}
+
+.footer-marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+  color: #f7e7ce;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- 🎉 HERO -->
+<!-- HERO -->
 <section class="reveal">
   <h1>Louie & Febian @ 50</h1>
   <p>A Milestone Celebration</p>
   <img src="louie.jpg">
 </section>
 
-<!-- 📍 DETAILS -->
+<!-- DETAILS -->
 <section class="reveal">
   <div class="card">
     <h2>Event Details</h2>
@@ -111,15 +132,15 @@ input, textarea {
   </div>
 </section>
 
-<!-- 👗 DRESS CODE -->
+<!-- DRESS CODE -->
 <section class="reveal">
   <div class="card">
     <h2>Dress Code</h2>
-     <p>Any Shade of Red Attire </p>
+    <p>Any Shade of Red Attire</p>
   </div>
 </section>
 
-<!-- 📊 RSVP -->
+<!-- RSVP -->
 <section class="reveal">
   <div class="card">
     <h2>RSVP</h2>
@@ -128,57 +149,26 @@ input, textarea {
 
   <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
 
-  <!-- Guest Name Dropdown -->
   <label>Select Your Name</label>
   <select id="guestSelect" name="guest_name" required>
     <option value="">-- Choose Your Name --</option>
 
-    <option value="Joseph" data-seats="2">
-    Joseph
-    </option>
-
-    <option value="Jose" data-seats="2">
-      Jose
-    </option>
-
-    <option value="Luis" data-seats="1">
-     Luis
-    </option>
+    <option value="Joseph" data-seats="2">Joseph</option>
+    <option value="Jose" data-seats="2">Jose</option>
+    <option value="Luis" data-seats="1">Luis</option>
 
   </select>
 
-  <!-- Seats -->
   <label>Seats Allotted</label>
-  <input 
-    type="number" 
-    id="seats"
-    name="seats_allotted"
-    readonly
-  >
+  <input type="number" id="seats" name="seats_allotted" readonly>
 
   <button type="submit">RSVP Now</button>
-
 </form>
 
-<script>
-const guestSelect = document.getElementById("guestSelect");
-const seatsInput = document.getElementById("seats");
-
-guestSelect.addEventListener("change", function () {
-
-  const selectedOption =
-    guestSelect.options[guestSelect.selectedIndex];
-
-  const seats =
-    selectedOption.getAttribute("data-seats");
-
-  seatsInput.value = seats || "";
-});
-</script>
   </div>
 </section>
 
-<!-- 🎯 COUNTDOWN + QR -->
+<!-- COUNTDOWN + QR -->
 <section class="reveal">
   <div class="card">
     <div id="countdown"></div>
@@ -186,15 +176,21 @@ guestSelect.addEventListener("change", function () {
   </div>
 </section>
 
-<!-- 🎵 MUSIC -->
+<!-- FOOTER MARQUEE -->
+<div class="footer-marquee">
+  <p>
+    🎉 Go Digital for your Birthday Invitation | Contact: Joseph M. Julian | Modern RSVP System Available
+  </p>
+</div>
+
+<!-- MUSIC -->
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- JS -->
 <script>
 
-// FADE IN
+// Scroll reveal
 const sections = document.querySelectorAll('.reveal');
 
 window.addEventListener('scroll', () => {
@@ -206,7 +202,16 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// COUNTDOWN
+// RSVP auto seats
+const guestSelect = document.getElementById("guestSelect");
+const seatsInput = document.getElementById("seats");
+
+guestSelect.addEventListener("change", function () {
+  const selectedOption = guestSelect.options[guestSelect.selectedIndex];
+  seatsInput.value = selectedOption.getAttribute("data-seats") || "";
+});
+
+// Countdown
 const eventDate = new Date("May 31, 2026 14:00:00").getTime();
 
 setInterval(() => {
@@ -219,7 +224,7 @@ setInterval(() => {
     "⏳ " + days + " days left before the celebration!";
 }, 1000);
 
-// QR CODE
+// QR code
 const qr = document.createElement("img");
 qr.src =
   "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
