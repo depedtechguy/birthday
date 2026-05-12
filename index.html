@@ -125,14 +125,21 @@ input, textarea {
   <div class="card">
     <h2>RSVP</h2>
 
-    <form action="https://api.web3forms.com/submit" method="POST">
+ <form action="https://api.web3forms.com/submit" method="POST">
   <input type="hidden" name="access_key" value="b0a47447-6ece-42e3-bd87-27dd68ccb1f6">
-  <input type="text" name="name" required>
-  
-  <textarea name="number_invited_guest" required></textarea>
-  <button type="submit">Submit</button>
 
-    </form>
+  <input type="text" name="name" placeholder="Your Name" required>
+
+  <input 
+    type="number" 
+    name="guests" 
+    placeholder="Number of Guests" 
+    min="1" 
+    required
+  >
+
+  <button type="submit">RSVP Now</button>
+</form>
   </div>
 </section>
 
