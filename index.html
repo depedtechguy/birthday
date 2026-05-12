@@ -124,21 +124,57 @@ input, textarea {
   <div class="card">
     <h2>RSVP</h2>
 
- <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="b0a47447-6ece-42e3-bd87-27dd68ccb1f6">
+<form action="https://api.web3forms.com/submit" method="POST">
 
-  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
 
+  <!-- Guest Name Dropdown -->
+  <label>Select Your Name</label>
+  <select id="guestSelect" name="guest_name" required>
+    <option value="">-- Choose Your Name --</option>
+
+    <option value="Joseph" data-seats="2">
+    Joseph
+    </option>
+
+    <option value="Jose" data-seats="2">
+      Jose
+    </option>
+
+    <option value="Luis" data-seats="1">
+     Luis
+    </option>
+
+  </select>
+
+  <!-- Seats -->
+  <label>Seats Allotted</label>
   <input 
     type="number" 
-    name="guests" 
-    placeholder="Number of Guests" 
-    min="1" 
-    required
+    id="seats"
+    name="seats_allotted"
+    readonly
   >
 
   <button type="submit">RSVP Now</button>
+
 </form>
+
+<script>
+const guestSelect = document.getElementById("guestSelect");
+const seatsInput = document.getElementById("seats");
+
+guestSelect.addEventListener("change", function () {
+
+  const selectedOption =
+    guestSelect.options[guestSelect.selectedIndex];
+
+  const seats =
+    selectedOption.getAttribute("data-seats");
+
+  seatsInput.value = seats || "";
+});
+</script>
   </div>
 </section>
 
