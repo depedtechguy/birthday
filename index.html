@@ -80,11 +80,6 @@ input, textarea, select {
   margin-top: 10px;
 }
 
-/* QR */
-#qrcode {
-  margin-top: 20px;
-}
-
 /* FOOTER MARQUEE */
 .footer-marquee {
   width: 100%;
@@ -168,11 +163,10 @@ input, textarea, select {
   </div>
 </section>
 
-<!-- COUNTDOWN + QR -->
+<!-- COUNTDOWN ONLY -->
 <section class="reveal">
   <div class="card">
     <div id="countdown"></div>
-    <div id="qrcode"></div>
   </div>
 </section>
 
@@ -223,14 +217,6 @@ setInterval(() => {
   document.getElementById("countdown").innerHTML =
     "⏳ " + days + " days left before the celebration!";
 }, 1000);
-
-// QR code
-const qr = document.createElement("img");
-qr.src =
-  "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
-  window.location.href;
-
-document.getElementById("qrcode").appendChild(qr);
 
 </script>
 
